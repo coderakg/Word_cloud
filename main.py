@@ -1,6 +1,3 @@
-# A wordCloud is an image that depicts most of the words in a text and size of the wordin the image is propotional to the number of times it appears in the text
-# This is the uploader widget
-
 import wordcloud
 import numpy as np
 from matplotlib import pyplot as plt
@@ -25,10 +22,7 @@ def _upload():
     _upload_widget.observe(_cb, names='data')
     display(_upload_widget)
 
-# _upload("C:\Users\aksha\OneDrive\Desktop\file_contents.txt")
-
 def calculate_frequencies(file_contents):
-    # Here is a list of punctuations and uninteresting words you can use to process your text
     punctuations = '''!()-[]{};:'"\,<>./?@#$%^&*_~'''
     uninteresting_words = ["the", "in", "a", "to", "if", "is", "it", "of", "and", "or", "an", "as", "i", "me", "my", \
     "we", "our", "ours", "you", "your", "yours", "he", "she", "him", "his", "her", "hers", "its", "they", "them", \
@@ -36,7 +30,6 @@ def calculate_frequencies(file_contents):
     "have", "has", "had", "do", "does", "did", "but", "at", "by", "with", "from", "here", "when", "where", "how", \
     "all", "any", "both", "each", "few", "more", "some", "such", "no", "nor", "too", "very", "can", "will", "just"]
     
-    # LEARNER CODE START HERE
     non_punctuation_text=""
     for char in file_contents:
         if char not in punctuations:
@@ -55,13 +48,9 @@ def calculate_frequencies(file_contents):
         else:
             frequencies[alpha_word]+=1
 
-    
-    #wordcloud
     cloud = wordcloud.WordCloud()
     cloud.generate_from_frequencies(frequencies)
     return cloud.to_array()
-
-    # Display your wordcloud image
 
 myimage = calculate_frequencies(user_input)
 plt.imshow(myimage, interpolation = 'nearest')
